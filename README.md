@@ -1,5 +1,5 @@
 # GMS2_Fragments
-Smaller dev projects for implementing specific features
+Smaller projects for implementing specific features in Gamemaker Studio 2
 
 # Current Projects
 RoninTrio
