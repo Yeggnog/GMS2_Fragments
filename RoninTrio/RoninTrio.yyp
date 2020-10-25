@@ -103,6 +103,14 @@
             }
         },
         {
+            "Key": "7a91cf0b-9af5-439c-85e3-2576f66b1b62",
+            "Value": {
+                "id": "6cf1de27-a7bb-4657-965d-60e07cd949f7",
+                "resourcePath": "objects\\Entity\\Entity.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "7e3c9fbf-4bdb-4a71-a58d-35865c4d3951",
             "Value": {
                 "id": "5fa28ffb-50fb-4372-9dbc-5a5daf11a2dd",
@@ -132,6 +140,14 @@
                 "id": "bcde6050-5c4e-4120-8e57-aeb0123b259b",
                 "resourcePath": "views\\9822125c-4f1b-4742-8cdb-d14e7e21db1f.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "a5f17d8d-defd-469e-8760-0e649495d1af",
+            "Value": {
+                "id": "acf14153-3cd7-47ce-85b5-e3f1b4876e41",
+                "resourcePath": "objects\\Player\\Player.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -207,6 +223,14 @@
             }
         },
         {
+            "Key": "d1f33365-5834-4aa2-a5f7-1a8f5d9af117",
+            "Value": {
+                "id": "0d360046-5ec6-413d-87e4-b45c6d03c8df",
+                "resourcePath": "sprites\\Collider_16\\Collider_16.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "db32dbbc-ffa6-470e-8e52-60eb8b7aece6",
             "Value": {
                 "id": "7ac246a0-265b-4dc0-9b92-27272ff78f54",
@@ -220,6 +244,22 @@
                 "id": "8bf25be0-d6ba-414f-b74d-0f0a58c15f8d",
                 "resourcePath": "views\\dec53157-b019-44a3-b632-de18a61bb694.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "e30bb95d-0e78-43a7-943b-4d3dcedfb44e",
+            "Value": {
+                "id": "c5350b85-c90d-4050-b744-609c8021401a",
+                "resourcePath": "objects\\Solid\\Solid.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "e633a4d5-fe87-470b-abab-933e042b9f37",
+            "Value": {
+                "id": "0df70ba4-677b-49e3-84ca-a99b9a124d2e",
+                "resourcePath": "rooms\\room1\\room1.yy",
+                "resourceType": "GMRoom"
             }
         },
         {

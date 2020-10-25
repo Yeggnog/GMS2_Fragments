@@ -13,10 +13,7 @@ if(GameControl.wind_spd > 1){
 	}
 }
 
-// rain
-if(GameControl.precip == true){
-	// raining
-}
+// rain (none)
 
 // snow
 if(GameControl.snow_lvl > 1){
