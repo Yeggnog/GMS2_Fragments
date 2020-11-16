@@ -8,6 +8,27 @@ hit_flash = lerp(hit_flash,0,1);
 if(!boost_active){
 
 // movement controls
+if(HP > 0){
+	// AI control
+	if(int64(x_knock) == 0 && int64(y_knock) == 0){
+		if(AI_wait == 0){
+			// pick action
+			
+			// debug action [DEBUG]
+			var dir = point_direction(x,y,Player.x,Player.y);
+			slash = instance_create_layer(x+lengthdir_x(18,dir),y+lengthdir_y(18,dir),layer,MeleeAttack);
+			slash.owner = id;
+			slash.dmg = 2;
+			slash.force = 0.75;
+			slash.dir = dir;
+			slash.rad = 18;
+			slash.life = 12;
+			AI_wait = 90;
+		}else{
+			AI_wait -= 1;
+		}
+	}
+}
 
 // variable updates
 x_knock = lerp(x_knock, 0.0, 0.1);
@@ -52,10 +73,10 @@ y_spd = ysp;
 x += x_spd;
 y += y_spd;
 
+}
+
 // handle overflow
 x = max(0,x);
 x = min(x,room_width);
 y = max(0,y);
 y = min(y,room_height);
-
-}

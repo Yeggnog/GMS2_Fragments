@@ -39,6 +39,30 @@
             }
         },
         {
+            "Key": "1679e20a-25cb-47d9-b73c-9351fd3fe2a8",
+            "Value": {
+                "id": "f2e86239-6793-45a6-8e1d-6713a7d807cf",
+                "resourcePath": "objects\\Attack\\Attack.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "2ad23866-a137-44c8-860f-0123b6fe8441",
+            "Value": {
+                "id": "a823bc90-5bfc-40a2-bd0d-76d393c1bf37",
+                "resourcePath": "sprites\\Collider_Projectile\\Collider_Projectile.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "41c04113-b4d2-4179-92cc-7c832e42b58e",
+            "Value": {
+                "id": "afb46fe5-6dd0-42f5-9a3f-086665a23a56",
+                "resourcePath": "objects\\MeleeAttack\\MeleeAttack.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "420c5c36-4a9d-4996-a0cd-8d5a22913ef1",
             "Value": {
                 "id": "056e6467-7d48-431f-8a59-c9402091b12b",
@@ -92,6 +116,14 @@
                 "id": "9c62d8b4-2ba5-4faa-bbdf-82791804e8d1",
                 "resourcePath": "views\\70f431d1-e08d-4b2b-83c5-fae7fd613a9a.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "72e19915-9edf-4958-aa69-4f449cee7aa3",
+            "Value": {
+                "id": "3a177b61-cbec-4125-aa4c-9ca524ebe738",
+                "resourcePath": "sprites\\UI_Boost\\UI_Boost.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -199,6 +231,14 @@
             }
         },
         {
+            "Key": "caf16efc-90da-48ca-9e7c-4b46336eba7b",
+            "Value": {
+                "id": "32e0105d-dddc-4fdb-9243-7b6b4be5d326",
+                "resourcePath": "objects\\ProjectileAttack\\ProjectileAttack.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "cc98d028-7bdd-4680-85f3-c87a7baa481e",
             "Value": {
                 "id": "6d68e271-e432-42e5-a6c8-44fa961dcccf",
@@ -255,11 +295,27 @@
             }
         },
         {
+            "Key": "e4604074-471e-422e-a478-8a276a168aee",
+            "Value": {
+                "id": "8a0e7d03-5b4d-4421-aa8c-f052fb4c1655",
+                "resourcePath": "objects\\Enemy\\Enemy.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "e633a4d5-fe87-470b-abab-933e042b9f37",
             "Value": {
                 "id": "0df70ba4-677b-49e3-84ca-a99b9a124d2e",
                 "resourcePath": "rooms\\room1\\room1.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "ee4f75cd-22f1-4f5c-a0a2-b7d709a01a2b",
+            "Value": {
+                "id": "36bff1d3-44d7-471e-bed8-8ec37d3fca4d",
+                "resourcePath": "shaders\\Riptide\\Riptide.yy",
+                "resourceType": "GMShader"
             }
         },
         {
@@ -276,6 +332,14 @@
                 "id": "e20da26d-e8b0-4487-b264-510f0387a168",
                 "resourcePath": "options\\mac\\options_mac.yy",
                 "resourceType": "GMMacOptions"
+            }
+        },
+        {
+            "Key": "f9926408-0f96-4bf7-bd9b-42fc4ceb3b12",
+            "Value": {
+                "id": "d1869956-fac8-4cad-a9e1-88b45a990342",
+                "resourcePath": "views\\f9926408-0f96-4bf7-bd9b-42fc4ceb3b12.yy",
+                "resourceType": "GMFolder"
             }
         }
     ],

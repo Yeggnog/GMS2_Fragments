@@ -9,3 +9,5 @@ for(var i=0; i<siz; i++){
 	part_type_destroy(part_types_weather[| i]);
 }
 ds_list_destroy(part_types_weather);
+
+surface_free(boost_surface);

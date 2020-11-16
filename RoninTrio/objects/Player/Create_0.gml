@@ -4,10 +4,12 @@
 x_knock = 0;
 y_knock = 0;
 mass = 1;
+HP = 10;
 
 disp_1 = 42;
 disp_2 = 42;
 
 // other
 hit_flash = 0;
-
+slash = noone;
+boost = 100;

@@ -13,8 +13,7 @@
 
 // draw weather effects
 
-// debug
-// wind
+// wind [DEBUG]
 if(wind_spd > 0){
 	draw_set_color(c_red);
 	var center_x = view_xport[0]+72;

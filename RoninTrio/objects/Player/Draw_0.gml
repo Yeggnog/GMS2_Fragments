@@ -1,14 +1,16 @@
 // -- draw self --
 
 // scaling (cap at 4)
-var xscale = 1.0+(abs(x_knock)/4);
-var yscale = 1.0+(abs(y_knock)/4);
+var xscale = 1.0//+(abs(x_knock)/4);
+var yscale = 1.0//+(abs(y_knock)/4);
 
 // color / hit flash
 if(hit_flash > 0){
 	draw_set_color(c_white);
-}else{
+}else if(HP > 0){
 	draw_set_color(c_lime);
+}else{
+	draw_set_color(c_green);
 }
 
 // draw
