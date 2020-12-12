@@ -8,3 +8,5 @@ life = -1;
 
 // unique
 rad = 12;
+sprite_index = Collider_16;
+image_speed = 1;

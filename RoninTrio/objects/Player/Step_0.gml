@@ -9,7 +9,24 @@ hit_flash = lerp(hit_flash,0,1);
 if(instance_exists(GameControl)){
 	if(boost_active){
 		if(boost == 0){
-			boost_active = false;
+			// cinematic finish
+			if(kill_list_wait == 0){
+				if(ds_list_size(kill_list) > 0){
+					if(cinematic_finish == false){
+						cinematic_finish = true;
+					}
+					var inst = kill_list[| 0];
+					// particle
+					part_particles_create(part_sys_weather,inst.x,inst.y,part_types_weather[| 1],1);
+					kill_list_wait = 6;
+					ds_list_delete(kill_list, 0);
+				}else{
+					boost_active = false;
+					cinematic_finish = false;
+				}
+			}else{
+				kill_list_wait -= 1;
+			}
 		}else if(boost > 0){
 			boost -= 1;
 			// afterimages
@@ -30,11 +47,20 @@ if(instance_exists(GameControl)){
 		}
 	}else if(boost < 100){
 		boost += 1;
+	}else{ // if(afterimg[0,0] != x || afterimg[0,1] != y)
+		// reset afterimages
+		for(var i=0; i<6; i++){
+			afterimg[i,0] = x;
+			afterimg[i,1] = y;
+		}
+		//if(surface_exists(beyond)){
+			//surface_free(beyond);
+		//}
 	}
 }
 
 // movement controls [TEMP] [3]
-if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0){
+if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0 && cinematic_finish == false){
 	if(keyboard_check(ord("A"))){
 		// left
 		x_spd += -2;
@@ -70,11 +96,14 @@ if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0){
 		var dir = point_direction(x,y,mouse_x,mouse_y);
 		slash = instance_create_layer(x+lengthdir_x(18,dir),y+lengthdir_y(18,dir),layer,MeleeAttack);
 		slash.owner = id;
-		slash.dmg = 2;
+		//slash.dmg = 2;
+		slash.dmg = 12;
 		slash.force = 0.75;
 		slash.dir = dir;
 		slash.rad = 18;
 		slash.life = 6;
+		slash.sprite_index = Particles_Slash1;
+		slash.image_angle = dir;
 	}
 }
 

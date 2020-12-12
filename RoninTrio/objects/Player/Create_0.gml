@@ -21,3 +21,6 @@ afterimg[3,0] = 0; afterimg[3,1] = 0;
 afterimg[4,0] = 0; afterimg[4,1] = 0;
 afterimg[5,0] = 0; afterimg[5,1] = 0;
 afterimg_lag = 0;
+cinematic_finish = false;
+kill_list_wait = 0;
+kill_list = ds_list_create();

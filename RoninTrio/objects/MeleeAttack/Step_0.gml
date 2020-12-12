@@ -15,6 +15,7 @@ if(owner != noone){
 	x = owner.x + lengthdir_x(rad,dir);
 	y = owner.y + lengthdir_y(rad,dir);
 }
+image_angle = dir;
 
 // deactivation timer
 if(deactivate > 0){
@@ -36,6 +37,11 @@ if(deactivate == 0){
 				inst.x_knock = (force/inst.mass)*lengthdir_x(8,dir);
 				inst.y_knock = (force/inst.mass)*lengthdir_y(8,dir);
 			}
+			// kill list add
+			if(boost_active && owner != noone && owner.object_index == Player && inst.HP <= 0){
+				ds_list_add(Player.kill_list,inst);
+			}
+			part_particles_create(part_sys_weather,inst.x,inst.y,part_types_weather[| 2],1);
 			flag = true;
 		}
 	}
@@ -55,10 +61,12 @@ if(deactivate == 0){
 				owner.x_knock = (force/owner.mass)*lengthdir_x(8,(180-k_dir));
 				owner.y_knock = (force/owner.mass)*lengthdir_y(8,(180-k_dir));
 				// clash particle(s)
+				part_particles_create(part_sys_weather,inst.x,inst.y,part_types_weather[| 4],1);
 			}else if(inst.object_index == ProjectileAttack){
 				// projectile
 				inst.dir = dir;
 				// deflect particle
+				part_particles_create(part_sys_weather,inst.x,inst.y,part_types_weather[| 3],1);
 			}
 			flag = true;
 		}

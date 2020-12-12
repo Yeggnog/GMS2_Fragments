@@ -1,3 +1,8 @@
+// direction lerp
+direction = dir;
+lerp_dir = lerp(lerp_dir,dir,1);
+image_angle = lerp_dir;
+
 if(!boost_active){
 
 // manage life
@@ -17,11 +22,6 @@ y += lengthdir_y(spd,dir);
 if(place_meeting(x,y,Solid)){
 	spd = 0;
 }
-
-// direction lerp
-direction = dir;
-lerp_dir = lerp(lerp_dir,dir,1);
-image_angle = lerp_dir;
 
 // damage entities
 if(deactivate == 0){

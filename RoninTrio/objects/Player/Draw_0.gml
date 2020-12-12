@@ -3,6 +3,12 @@
 // scaling (cap at 4)
 var xscale = 1.0//+(abs(x_knock)/4);
 var yscale = 1.0//+(abs(y_knock)/4);
+var knock_dir = point_direction(0,0,x_knock,y_knock);
+if((knock_dir > 45 && knock_dir <= 135) || (knock_dir > 225 && knock_dir <= 315)){
+	yscale = 1+(abs(y_knock)/4);
+}else{
+	xscale = 1+(abs(x_knock)/4);
+}
 
 // color / hit flash
 if(hit_flash > 0){
@@ -15,6 +21,9 @@ if(hit_flash > 0){
 
 if(boost_active){
 	// draw to surface beyond the time
+	if(surface_exists(beyond)){
+		surface_free(beyond);
+	}
 	if(!surface_exists(beyond)){
 		beyond = surface_create(camera_get_view_width(view_camera[0]),camera_get_view_height(view_camera[0]));
 	}

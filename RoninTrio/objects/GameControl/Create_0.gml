@@ -5,6 +5,11 @@ globalvar part_sys_weather;
 part_sys_weather = part_system_create();
 globalvar part_types_weather;
 part_types_weather = ds_list_create();
+// particle types
+ds_list_add(part_types_weather,part_type_create());
+ds_list_add(part_types_weather,part_type_create());
+ds_list_add(part_types_weather,part_type_create());
+ds_list_add(part_types_weather,part_type_create());
 ds_list_add(part_types_weather,part_type_create());
 // type 0: leaf
 part_type_life(part_types_weather[| 0],50,70);
@@ -12,6 +17,21 @@ part_type_orientation(part_types_weather[| 0],0,360,2,6,false);
 part_type_speed(part_types_weather[| 0],0.5,1,-0.01,0.2);
 part_type_sprite(part_types_weather[| 0],Particles_Leaves,false,false,true);
 part_type_alpha2(part_types_weather[| 0],1.0,0);
+// type 1: splash
+// type 2: footprint
+// [ TODO: un-differentiate particle systems]
+// type 3: kill slash
+part_type_sprite(part_types_weather[| 1],Particles_KillSlash,true,true,false);
+part_type_life(part_types_weather[| 1],6,6);
+// type 4: hit
+part_type_sprite(part_types_weather[| 2],Particles_Hurt,true,true,false);
+part_type_life(part_types_weather[| 2],6,6);
+// type 5: deflect
+part_type_sprite(part_types_weather[| 3],Particles_Deflect,true,true,false);
+part_type_life(part_types_weather[| 3],6,6);
+// type 6: sword clash
+part_type_sprite(part_types_weather[| 4],Particles_Clash,true,true,false);
+part_type_life(part_types_weather[| 4],6,6);
 
 // set up the world
 

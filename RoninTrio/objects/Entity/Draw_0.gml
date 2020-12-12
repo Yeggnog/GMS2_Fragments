@@ -4,8 +4,12 @@
 var xscale = 1;
 var yscale = 1;
 if(!boost_active){
-	xscale = 1+(abs(x_knock)/4);
-	yscale = 1+(abs(y_knock)/4);
+	var knock_dir = point_direction(0,0,x_knock,y_knock);
+	if((knock_dir > 45 && knock_dir <= 135) || (knock_dir > 225 && knock_dir <= 315)){
+		yscale = 1+(abs(y_knock)/4);
+	}else{
+		xscale = 1+(abs(x_knock)/4);
+	}
 }
 
 // color / hit flash
