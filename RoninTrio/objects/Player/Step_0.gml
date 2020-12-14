@@ -1,3 +1,5 @@
+if(!paused){
+	
 // temps
 var x_spd = 0;
 var y_spd = 0;
@@ -29,34 +31,23 @@ if(instance_exists(GameControl)){
 			}
 		}else if(boost > 0){
 			boost -= 1;
-			// afterimages
-			if(afterimg_lag > 0){
-				afterimg_lag -= 1;
-			}else{
-				for(var i=0; i<5; i++){
-					afterimg[i+1,0] = afterimg[i,0];
-					afterimg[i+1,1] = afterimg[i,1];
-				}
-				afterimg[0,0] = x;
-				afterimg[0,1] = y;
-				if(surface_exists(beyond)){
-					surface_free(beyond);
-				}
-				afterimg_lag = 3;
-			}
 		}
 	}else if(boost < 100){
 		boost += 1;
-	}else{ // if(afterimg[0,0] != x || afterimg[0,1] != y)
-		// reset afterimages
-		for(var i=0; i<6; i++){
-			afterimg[i,0] = x;
-			afterimg[i,1] = y;
-		}
-		//if(surface_exists(beyond)){
-			//surface_free(beyond);
-		//}
 	}
+}
+
+// afterimages
+if(afterimg_lag > 0){
+	afterimg_lag -= 1;
+}else{
+	for(var i=0; i<5; i++){
+		afterimg[i+1,0] = afterimg[i,0];
+		afterimg[i+1,1] = afterimg[i,1];
+	}
+	afterimg[0,0] = x;
+	afterimg[0,1] = y;
+	afterimg_lag = 3;
 }
 
 // movement controls [TEMP] [3]
@@ -157,3 +148,5 @@ x = max(0,x);
 x = min(x,room_width);
 y = max(0,y);
 y = min(y,room_height);
+
+}

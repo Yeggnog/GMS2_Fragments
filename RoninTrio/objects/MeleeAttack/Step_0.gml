@@ -1,3 +1,4 @@
+if(!paused){
 if(!boost_active || (owner != noone && owner.object_index == Player)){
 
 // manage life
@@ -77,4 +78,5 @@ if(deactivate == 0){
 	}
 }
 
+}
 }

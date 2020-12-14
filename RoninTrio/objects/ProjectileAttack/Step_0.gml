@@ -1,3 +1,5 @@
+if(!paused){
+
 // direction lerp
 direction = dir;
 lerp_dir = lerp(lerp_dir,dir,1);
@@ -44,6 +46,8 @@ if(deactivate == 0){
 	if(flag){
 		instance_destroy();
 	}
+}
+
 }
 
 }

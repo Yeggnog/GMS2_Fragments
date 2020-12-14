@@ -24,9 +24,7 @@ if(boost_active){
 	if(surface_exists(beyond)){
 		surface_free(beyond);
 	}
-	if(!surface_exists(beyond)){
-		beyond = surface_create(camera_get_view_width(view_camera[0]),camera_get_view_height(view_camera[0]));
-	}
+	beyond = surface_create(camera_get_view_width(view_camera[0]),camera_get_view_height(view_camera[0]));
 	surface_set_target(beyond);
 	var col = draw_get_color();
 	var vx = camera_get_view_x(view_camera[0]);
@@ -52,10 +50,9 @@ if(boost_active){
 	// draw normally
 	draw_rectangle(x-((xscale/2)*sprite_width),y-((yscale/2)*sprite_height),
 		x+((xscale/2)*sprite_width)-1,y+((yscale/2)*sprite_height)-1,false);
-
-	// debug
-	//draw_text(x+24, y+24,"("+string(disp_1)+","+string(disp_2)+")");
 }
+
+// debug
 
 // reset
 draw_set_color(c_white);

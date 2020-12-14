@@ -47,6 +47,14 @@
             }
         },
         {
+            "Key": "1d36eec7-a5a8-4c5f-9faa-feb6feb114c9",
+            "Value": {
+                "id": "59245227-4295-4b6e-9e85-543093a2cb80",
+                "resourcePath": "views\\1d36eec7-a5a8-4c5f-9faa-feb6feb114c9.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "2ad23866-a137-44c8-860f-0123b6fe8441",
             "Value": {
                 "id": "a823bc90-5bfc-40a2-bd0d-76d393c1bf37",
@@ -84,6 +92,14 @@
                 "id": "f67729e2-0db9-4463-8a2f-5cb5c3188201",
                 "resourcePath": "views\\42752420-b4ad-493c-9c27-9d9bbb148743.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "47d13a67-567e-4eb6-87d9-10931260bceb",
+            "Value": {
+                "id": "924f3865-ac13-47e8-bd96-8253eebc513e",
+                "resourcePath": "sprites\\UI_Sword\\UI_Sword.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

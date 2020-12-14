@@ -1,3 +1,5 @@
+if(!paused){
+
 // temps
 var x_spd = 0;
 var y_spd = 0;
@@ -57,5 +59,7 @@ x = max(0,x);
 x = min(x,room_width);
 y = max(0,y);
 y = min(y,room_height);
+
+}
 
 }

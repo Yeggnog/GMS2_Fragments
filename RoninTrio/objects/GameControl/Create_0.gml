@@ -38,6 +38,16 @@ part_type_life(part_types_weather[| 4],6,6);
 // objects
 obj_list = ds_list_create();
 
+// pausing / menus
+globalvar paused;
+paused = false;
+//sword_offset = 0;
+pause_wait = -1;
+curs_wait = 0;
+curs_y = 0;
+curs_offset_x = 0;
+curs_offset_y = 0;
+
 // riptide boost FX
 globalvar boost_active;
 boost_active = false;
