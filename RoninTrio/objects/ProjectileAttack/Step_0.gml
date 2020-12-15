@@ -39,6 +39,7 @@ if(deactivate == 0){
 				inst.x_knock = (force/inst.mass)*lengthdir_x(8,dir);
 				inst.y_knock = (force/inst.mass)*lengthdir_y(8,dir);
 			}
+			part_particles_create(part_sys,inst.x,inst.y,part_types[| 2],1);
 			flag = true;
 		}
 	}

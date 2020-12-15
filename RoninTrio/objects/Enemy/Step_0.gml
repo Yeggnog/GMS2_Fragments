@@ -16,8 +16,10 @@ if(HP > 0){
 		if(AI_wait == 0){
 			// pick action
 			
+			// do action
+			
 			// debug action [DEBUG]
-			var dir = point_direction(x,y,Player.x,Player.y);
+			/*var dir = point_direction(x,y,Player.x,Player.y);
 			slash = instance_create_layer(x+lengthdir_x(18,dir),y+lengthdir_y(18,dir),layer,MeleeAttack);
 			slash.owner = id;
 			slash.dmg = 2;
@@ -25,7 +27,7 @@ if(HP > 0){
 			slash.dir = dir;
 			slash.rad = 18;
 			slash.life = 12;
-			AI_wait = 90;
+			AI_wait = 90;*/
 		}else{
 			AI_wait -= 1;
 		}

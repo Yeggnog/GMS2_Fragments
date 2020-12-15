@@ -1,3 +1,63 @@
+// update key inputs
+for(var i=0; i<array_height_2d(inputs); i++){
+	if(inputs[i,0] > 0){
+		inputs[i,0] -= 1;
+	}
+	if(inputs[i,3] == 1){
+		// press check
+		var flag = false;
+		switch(inputs[i,2]){
+			case 0: flag = (flag || keyboard_check_pressed(inputs[i,1])) break;
+			case 1: flag = (flag || mouse_check_button_pressed(inputs[i,1])) break;
+			case 2: 
+			// gamepad button
+			for(var dev=0; dev<gamepad_get_device_count(); dev++){
+				if(gamepad_is_connected(dev)){
+					flag = (flag || gamepad_button_check_pressed(dev,inputs[i,1]));
+				}
+			}
+			break;
+			case 3: 
+			// gamepad axis
+			for(var dev=0; dev<gamepad_get_device_count(); dev++){
+				if(gamepad_is_connected(dev)){
+					flag = (flag || abs(gamepad_axis_value(dev,inputs[i,1])) >= gamepad_get_axis_deadzone(dev));
+				}
+			}
+			break;
+		}
+		if(flag){
+			inputs[i,0] = 4;
+		}
+	}else{
+		// constant check
+		var flag = false;
+		switch(inputs[i,2]){
+			case 0: flag = (flag || keyboard_check(inputs[i,1])) break;
+			case 1: flag = (flag || mouse_check_button(inputs[i,1])) break;
+			case 2: 
+			// gamepad button
+			for(var dev=0; dev<gamepad_get_device_count(); dev++){
+				if(gamepad_is_connected(dev)){
+					flag = (flag || gamepad_button_check(dev,inputs[i,1]));
+				}
+			}
+			break;
+			case 3: 
+			// gamepad axis
+			for(var dev=0; dev<gamepad_get_device_count(); dev++){
+				if(gamepad_is_connected(dev)){
+					flag = (flag || abs(gamepad_axis_value(dev,inputs[i,1])) >= gamepad_get_axis_deadzone(dev));
+				}
+			}
+			break;
+		}
+		if(flag){
+			inputs[i,0] = 4;
+		}
+	}
+}
+
 // key inputs for weather FX
 
 // wind
@@ -37,7 +97,7 @@ if(pause_wait == 0){
 }
 
 // pause control
-if(keyboard_check_pressed(vk_escape) && pause_wait == -1){
+if(inputs[10,0] > 0 && pause_wait == -1){
 	// pause
 	pause_wait = 12;
 }
@@ -59,7 +119,7 @@ if(paused){
 	if(curs_wait > 0){
 		curs_wait -= 1;
 	}else{
-		if(keyboard_check(ord("W"))){
+		if(inputs[2,0] > 0){
 			// up
 			if(curs_y > 0){
 				curs_y -= 1;
@@ -72,7 +132,7 @@ if(paused){
 			}
 			curs_wait = 6;
 		}
-		if(keyboard_check(ord("S"))){
+		if(inputs[3,0] > 0){
 			// down
 			if(curs_y < 4){
 				curs_y += 1;

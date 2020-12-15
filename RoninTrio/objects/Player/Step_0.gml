@@ -19,7 +19,7 @@ if(instance_exists(GameControl)){
 					}
 					var inst = kill_list[| 0];
 					// particle
-					part_particles_create(part_sys_weather,inst.x,inst.y,part_types_weather[| 1],1);
+					part_particles_create(part_sys,inst.x,inst.y,part_types[| 1],1);
 					kill_list_wait = 6;
 					ds_list_delete(kill_list, 0);
 				}else{
@@ -32,7 +32,7 @@ if(instance_exists(GameControl)){
 		}else if(boost > 0){
 			boost -= 1;
 		}
-	}else if(boost < 100){
+	}else if(boost < boost_max){
 		boost += 1;
 	}
 }
@@ -50,29 +50,34 @@ if(afterimg_lag > 0){
 	afterimg_lag = 3;
 }
 
-// movement controls [TEMP] [3]
-if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0 && cinematic_finish == false){
-	if(keyboard_check(ord("A"))){
+// animation wait
+if(anim_wait > 0){
+	anim_wait -= 1;
+}
+
+// movement controls
+if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0 && cinematic_finish == false && anim_wait == 0){
+	if(inputs[0,0] > 0){
 		// left
 		x_spd += -2;
 	}
-	if(keyboard_check(ord("D"))){
+	if(inputs[1,0] > 0){
 		// right
 		x_spd += 2;
 	}
-	if(keyboard_check(ord("W"))){
+	if(inputs[2,0] > 0){
 		// up
 		y_spd += -2;
 	}
-	if(keyboard_check(ord("S"))){
+	if(inputs[3,0] > 0){
 		// down
 		y_spd += 2;
 	}
-	if(keyboard_check_pressed(ord("E")) && boost > 0 && instance_exists(GameControl) && !boost_active){
+	if(inputs[9,0] > 0 && boost > 0 && instance_exists(GameControl) && !boost_active){
 		// riptide boost
 		boost_active = true;
 	}
-	if(mouse_check_button_pressed(mb_right)){
+	if(inputs[11,0] > 0){
 		// projectile
 		var dir = point_direction(x,y,mouse_x,mouse_y);
 		var shot = instance_create_layer(x+lengthdir_x(18,dir),y+lengthdir_y(18,dir),layer,ProjectileAttack);
@@ -82,7 +87,7 @@ if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0 && cinematic_finish == f
 		shot.spd = 4;
 		shot.life = 5;
 	}
-	if(mouse_check_button_pressed(mb_left) && slash == noone){
+	if(inputs[8,0] > 0 && slash == noone){
 		// slash
 		var dir = point_direction(x,y,mouse_x,mouse_y);
 		slash = instance_create_layer(x+lengthdir_x(18,dir),y+lengthdir_y(18,dir),layer,MeleeAttack);
@@ -95,6 +100,7 @@ if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0 && cinematic_finish == f
 		slash.life = 6;
 		slash.sprite_index = Particles_Slash1;
 		slash.image_angle = dir;
+		anim_wait = 4;
 	}
 }
 
@@ -136,8 +142,6 @@ while(place_meeting(x+xsp, y+ysp, Solid) && loops < 12){
 }
 x_spd = xsp;
 y_spd = ysp;
-//disp_1 = xsp;
-//disp_2 = ysp;
 
 // move object
 x += x_spd;

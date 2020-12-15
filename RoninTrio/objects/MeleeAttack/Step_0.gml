@@ -1,9 +1,10 @@
 if(!paused){
+image_speed = 1;
 if(!boost_active || (owner != noone && owner.object_index == Player)){
 
 // manage life
 if(life > 0){
-	life = lerp(life,0,1);
+	life -= 1;
 }else if(life == 0){
 	if(owner != noone){
 		owner.slash = noone;
@@ -42,7 +43,7 @@ if(deactivate == 0){
 			if(boost_active && owner != noone && owner.object_index == Player && inst.HP <= 0){
 				ds_list_add(Player.kill_list,inst);
 			}
-			part_particles_create(part_sys_weather,inst.x,inst.y,part_types_weather[| 2],1);
+			part_particles_create(part_sys,inst.x,inst.y,part_types[| 2],1);
 			flag = true;
 		}
 	}
@@ -62,12 +63,12 @@ if(deactivate == 0){
 				owner.x_knock = (force/owner.mass)*lengthdir_x(8,(180-k_dir));
 				owner.y_knock = (force/owner.mass)*lengthdir_y(8,(180-k_dir));
 				// clash particle(s)
-				part_particles_create(part_sys_weather,inst.x,inst.y,part_types_weather[| 4],1);
+				part_particles_create(part_sys,inst.x,inst.y,part_types[| 4],1);
 			}else if(inst.object_index == ProjectileAttack){
 				// projectile
 				inst.dir = dir;
 				// deflect particle
-				part_particles_create(part_sys_weather,inst.x,inst.y,part_types_weather[| 3],1);
+				part_particles_create(part_sys,inst.x,inst.y,part_types[| 3],1);
 			}
 			flag = true;
 		}
@@ -79,4 +80,6 @@ if(deactivate == 0){
 }
 
 }
+}else{
+image_speed = 0;
 }
