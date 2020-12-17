@@ -7,7 +7,7 @@ HP = 10;
 // other
 hit_flash = 0;
 anim_wait = 0;
-facing = 0; // 0/1 for R/L, +1 for up-facing, +0 for down-facing
+facing = 0; // 0/1 for R/L, +2 for up-facing, +0 for down-facing
 slash = noone;
 
 // boost

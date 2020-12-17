@@ -1,5 +1,5 @@
 // update key inputs
-for(var i=0; i<array_height_2d(inputs); i++){
+for(var i=0; i<array_length(inputs); i++){
 	if(inputs[i,0] > 0){
 		inputs[i,0] -= 1;
 	}
@@ -53,7 +53,7 @@ for(var i=0; i<array_height_2d(inputs); i++){
 			break;
 		}
 		if(flag){
-			inputs[i,0] = 4;
+			inputs[i,0] = 1;
 		}
 	}
 }
@@ -144,6 +144,18 @@ if(paused){
 				curs_offset_y += 80;
 			}
 			curs_wait = 6;
+		}
+		if(inputs[8,0] > 0){
+			// confirm
+			if(curs_y == 0 && pause_wait == -1){
+				// resume
+				pause_wait = 12;
+			}else if(curs_y == 1 && pause_wait == -1){
+				// restart room [DEBUG]
+				pause_wait = 12;
+				room_restart();
+				curs_y = 0;
+			}
 		}
 	}
 }

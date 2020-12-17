@@ -12,12 +12,15 @@ surface_set_target(UI_surf);
 // [ everything in here is properly scaled ]
 
 // boost meter
-draw_sprite(UI_Boost,0,2,2);
+/*draw_sprite(UI_Boost,0,2,2);
 draw_rectangle(17,5,67,13,false);
 draw_set_color(c_black);
 draw_rectangle(18,6,66,12,false);
 draw_set_color(make_color_rgb(0,191,243));
-draw_rectangle(18,6,18+((Player.boost/Player.boost_max)*48),12,false);
+draw_rectangle(18,6,18+((Player.boost/Player.boost_max)*48),12,false);*/
+draw_sprite(UI_Health,0,2,2);
+draw_sprite_part(UI_Health,1,7,3,(24*(Player.HP/10)),4,9,5);
+draw_sprite_part(UI_Health,2,7,5,(21*(Player.boost/Player.boost_max)),2,9,7);
 
 draw_set_color(c_white);
 

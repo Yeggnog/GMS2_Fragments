@@ -86,6 +86,7 @@ if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0 && cinematic_finish == f
 		shot.dir = dir;
 		shot.spd = 4;
 		shot.life = 5;
+		anim_wait = 4;
 	}
 	if(inputs[8,0] > 0 && slash == noone){
 		// slash

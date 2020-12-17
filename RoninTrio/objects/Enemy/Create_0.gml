@@ -10,5 +10,18 @@ HP = 10;
 hit_flash = 0;
 
 // AI vars
-AI_state = 0;
+AI_state = 1;
 AI_wait = 0;
+AI_intention = 0;
+AI_targ_x = x;
+AI_targ_y = y;
+origin_x = x;
+origin_y = y;
+target = noone;
+
+/*
+vision_range = 64;
+aggro_range = 64;
+standby_range = (40,56)
+melee_range = (24,32) / 20
+*/

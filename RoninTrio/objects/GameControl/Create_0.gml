@@ -1,5 +1,8 @@
 // set up the control system
 
+// randomize RNG
+randomize();
+
 // control inputs (DEFAULT)
 // ( 0 -> keyboard, 1 -> mouse, 2 -> gamepad button, 3 -> gamepad stick )
 // ( 0 -> constant check, 1 -> press check )
@@ -14,10 +17,10 @@ inputs[5,0] = 0; inputs[5,1] = ord("D"); inputs[5,2] = 0; inputs[5,3] = 1; // ri
 inputs[6,0] = 0; inputs[6,1] = ord("W"); inputs[6,2] = 0; inputs[6,3] = 1; // up(press)
 inputs[7,0] = 0; inputs[7,1] = ord("S"); inputs[7,2] = 0; inputs[7,3] = 1; // down(press)
 
-inputs[8,0] = 0; inputs[8,1] = mb_left; inputs[8,2] = 1; inputs[8,3] = 1; // attack / cancel
-inputs[9,0] = 0; inputs[9,1] = ord("E"); inputs[9,2] = 0; inputs[9,3] = 1; // boost / confirm
+inputs[8,0] = 0; inputs[8,1] = mb_left; inputs[8,2] = 1; inputs[8,3] = 1; // attack / confirm
+inputs[9,0] = 0; inputs[9,1] = ord("E"); inputs[9,2] = 0; inputs[9,3] = 1; // boost
 inputs[10,0] = 0; inputs[10,1] = vk_escape; inputs[10,2] = 0; inputs[10,3] = 1; // pause
-inputs[11,0] = 0; inputs[11,1] = mb_right; inputs[11,2] = 1; inputs[11,3] = 1; // projectile [DEBUG]
+inputs[11,0] = 0; inputs[11,1] = mb_right; inputs[11,2] = 1; inputs[11,3] = 1; // projectile[DEBUG] / cancel
 
 // particle system
 globalvar part_sys;
