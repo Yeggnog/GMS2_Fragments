@@ -24,7 +24,7 @@ if(wind_spd > 0){
 }
 
 // riptide boost FX
-if(boost_active){
+/*if(boost_active){
 	if(!surface_exists(boost_surface)){
 		boost_surface = surface_create(surface_get_width(application_surface),surface_get_height(application_surface));
 	}
@@ -38,4 +38,4 @@ if(boost_active){
 		// draw surface
 		draw_surface(Player.beyond,camera_get_view_x(view_camera[0]),camera_get_view_y(view_camera[0]));
 	}
-}
+}*/

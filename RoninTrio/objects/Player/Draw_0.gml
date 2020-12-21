@@ -24,7 +24,7 @@ if(boost_active){
 	if(surface_exists(beyond)){
 		surface_free(beyond);
 	}
-	beyond = surface_create(camera_get_view_width(view_camera[0]),camera_get_view_height(view_camera[0]));
+	beyond = surface_create(surface_get_width(application_surface),surface_get_height(application_surface));
 	surface_set_target(beyond);
 	var col = draw_get_color();
 	var vx = camera_get_view_x(view_camera[0]);
@@ -32,18 +32,18 @@ if(boost_active){
 	// afterimages
 	for(var i=5; i>=0; i--){
 		draw_set_color(merge_color(make_color_rgb(0,191,243),c_black,(i/6)));
-		draw_rectangle(afterimg[i,0]-(sprite_width/2)-vx,afterimg[i,1]-(sprite_height/2)-vy,
-			afterimg[i,0]+(sprite_width/2)-1-vx,afterimg[i,1]+(sprite_height/2)-1-vy,false);
+		draw_rectangle((4.0)*(afterimg[i,0]-(sprite_width/2)-vx),(4.0)*(afterimg[i,1]-(sprite_height/2)-vy),
+			(4.0)*(afterimg[i,0]+(sprite_width/2)-vx),(4.0)*(afterimg[i,1]+(sprite_height/2)-vy),false);
 	}
 	draw_set_color(col);
 	// slash / sprite
 	if(slash != noone && slash.y > y){
-		draw_sprite(slash.sprite_index,slash.image_index,slash.x-vx,slash.y-vy);
+		draw_sprite_ext(slash.sprite_index,slash.image_index,(4.0)*(slash.x-vx),(4.0)*(slash.y-vy),4.0,4.0,slash.image_angle,c_white,1.0);
 	}
-	draw_rectangle(x-((xscale/2)*sprite_width)-vx,y-((yscale/2)*sprite_height)-vy,
-		x+((xscale/2)*sprite_width)-1-vx,y+((yscale/2)*sprite_height)-1-vy,false);
+	draw_rectangle((4.0)*(x-((xscale/2)*sprite_width)-vx),(4.0)*(y-((yscale/2)*sprite_height)-vy),
+		(4.0)*(x+((xscale/2)*sprite_width)-vx),(4.0)*(y+((yscale/2)*sprite_height)-vy),false);
 	if(slash != noone && slash.y <= y){
-		draw_sprite(slash.sprite_index,slash.image_index,slash.x-vx,slash.y-vy);
+		draw_sprite_ext(slash.sprite_index,slash.image_index,(4.0)*(slash.x-vx),(4.0)*(slash.y-vy),4.0,4.0,slash.image_angle,c_white,1.0);
 	}
 	surface_reset_target();
 }else{

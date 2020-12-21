@@ -8,6 +8,7 @@ attribute vec2 in_TextureCoord;              // (u,v)
 
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
+uniform float f_magnitude;
 
 void main()
 {

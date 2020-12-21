@@ -84,6 +84,11 @@ if(weather_timers[0] > 0){
 	// cp
 }
 
+// boost ring
+if(boost_ring_age > 0){
+	boost_ring_age -= 1;
+}
+
 // pause / unpause
 if(pause_wait == 0){
 	if(paused){
@@ -150,11 +155,12 @@ if(paused){
 			if(curs_y == 0 && pause_wait == -1){
 				// resume
 				pause_wait = 12;
-			}else if(curs_y == 1 && pause_wait == -1){
+			}else if(curs_y == 3 && pause_wait == -1){
 				// restart room [DEBUG]
 				pause_wait = 12;
 				room_restart();
 				curs_y = 0;
+				boost_active = false;
 			}
 		}
 	}

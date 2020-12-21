@@ -1,8 +1,10 @@
 // -- draw self --
 
-if(HP > 0){
+/*if(HP > 0){
 	// ranges (debug)
-	draw_set_alpha(0.2);
+	draw_set_alpha(0.1);
+	draw_set_color(c_yellow);
+	draw_ellipse(origin_x-64,origin_y-64,origin_x+64,origin_y+64,false);
 	draw_set_color(c_red);
 	draw_ellipse(x-64,y-64,x+64,y+64,false);
 	draw_set_color(c_blue);
@@ -12,7 +14,7 @@ if(HP > 0){
 	draw_ellipse(x-20,y-20,x+20,y+20,false);
 	draw_set_alpha(1.0);
 	draw_set_color(c_white);
-}
+}*/
 
 // scaling (cap at 4)
 var xscale = 1;
@@ -27,11 +29,19 @@ if(!boost_active){
 }
 
 // color / hit flash
+//var dist = distance_to_object(target);
+if(target != noone){
+var dist = distance_to_point(target.x,target.y);
+}else{
+	var dist = 500;
+}
 if(hit_flash > 0){
 	draw_set_color(c_white);
 }else if(HP > 0){
 	if(AI_intention == 1){
 		draw_set_color(c_maroon);
+	}else if(dist < 48){//if(dist >= 48 && dist <= 56){
+		draw_set_color(c_blue);
 	}else{
 		draw_set_color(c_gray);
 	}
@@ -42,6 +52,14 @@ if(hit_flash > 0){
 // draw
 draw_rectangle(x-((xscale/2)*sprite_width),y-((yscale/2)*sprite_height),
 x+((xscale/2)*sprite_width),y+((yscale/2)*sprite_height),false);
+
+
+// [DEBUG]
+/*
+draw_set_color(c_lime)
+draw_text(x,y,string(AI_state));
+draw_ellipse(AI_targ_x-3,AI_targ_y-3,AI_targ_x+3,AI_targ_y+3,false);
+*/
 
 // reset
 draw_set_color(c_white);

@@ -71,9 +71,12 @@ curs_offset_y = 0;
 // riptide boost FX
 globalvar boost_active;
 boost_active = false;
-//boost_ring_age = 0;
+boost_ring_age = 0;
 //boost_ring_scale = 1.0;
+boost_ring_x = 0;
+boost_ring_y = 0;
 boost_surface = surface_create(surface_get_width(application_surface),surface_get_height(application_surface));
+boost_nmap = surface_create(surface_get_width(application_surface),surface_get_height(application_surface));
 
 // weather FX
 weather_timers[0] = 0;

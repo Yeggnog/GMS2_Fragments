@@ -76,6 +76,9 @@ if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0 && cinematic_finish == f
 	if(inputs[9,0] > 0 && boost > 0 && instance_exists(GameControl) && !boost_active){
 		// riptide boost
 		boost_active = true;
+		GameControl.boost_ring_age = 20;
+		GameControl.boost_ring_x = x;
+		GameControl.boost_ring_y = y;
 	}
 	if(inputs[11,0] > 0){
 		// projectile
@@ -93,15 +96,15 @@ if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0 && cinematic_finish == f
 		var dir = point_direction(x,y,mouse_x,mouse_y);
 		slash = instance_create_layer(x+lengthdir_x(18,dir),y+lengthdir_y(18,dir),layer,MeleeAttack);
 		slash.owner = id;
-		//slash.dmg = 2;
-		slash.dmg = 12;
+		slash.dmg = 2;
+		//slash.dmg = 12;
 		slash.force = 0.75;
 		slash.dir = dir;
 		slash.rad = 18;
 		slash.life = 6;
 		slash.sprite_index = Particles_Slash1;
 		slash.image_angle = dir;
-		anim_wait = 4;
+		anim_wait = 7; //4
 	}
 }
 

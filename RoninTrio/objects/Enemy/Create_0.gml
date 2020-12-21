@@ -8,6 +8,7 @@ HP = 10;
 
 // other
 hit_flash = 0;
+slash = noone;
 
 // AI vars
 AI_state = 1;

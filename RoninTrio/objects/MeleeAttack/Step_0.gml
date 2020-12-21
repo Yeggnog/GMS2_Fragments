@@ -21,7 +21,7 @@ image_angle = dir;
 
 // deactivation timer
 if(deactivate > 0){
-	deactivate = lerp(deactivate,0,1);
+	deactivate -= 1;
 }
 
 // damage entities
@@ -75,7 +75,7 @@ if(deactivate == 0){
 	}
 	ds_list_destroy(ent_list);
 	if(flag){
-		deactivate = 3;
+		deactivate = 8;
 	}
 }
 
