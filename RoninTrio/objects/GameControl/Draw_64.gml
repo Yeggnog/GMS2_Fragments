@@ -5,8 +5,7 @@ var vx = camera_get_view_x(view_camera[0]);
 var vy = camera_get_view_y(view_camera[0]);
 
 // [DEBUG]
-//draw_ellipse((4*vx)-3,(4*vy)-3,(4*vx)+3,(4*vy)+3,false);
-
+//draw_text(172,12,"mv["+string(inputs[0,0])+","+string(inputs[1,0])+","+string(inputs[2,0])+","+string(inputs[3,0])+"]  cm["+string(gamepad_axis_value(0,inputs[12,0]/*gp_axislh*/))+","+string(gamepad_axis_value(0,inputs[12,1]/*gp_axislv*/))+"]");
 
 // riptide boost FX
 if(boost_active){
@@ -43,7 +42,7 @@ if(boost_active){
 	shader_set_uniform_f(mag, 1);
 	texture_set_stage(normal, normalmap);
 	texture_set_stage(color, colormap);
-	draw_surface(boost_surface,0,0);
+	draw_surface(boost_surface,1,2);
 	shader_reset();
 	
 	//draw_surface(boost_nmap,0,0);
@@ -79,6 +78,19 @@ draw_sprite_part(UI_Health,2,7,5,(21*(Player.boost/Player.boost_max)),2,9,7);
 draw_set_color(c_white);
 
 // draw menu
+
+// control mode indicator
+var off_x = 0;
+if(pause_wait != -1){
+	if(paused){
+		off_x = (-20*(2-(pause_wait/6)));
+	}else{
+		off_x = (-20*(pause_wait/6));
+	}
+	draw_sprite(UI_Control_Icon,control_mode,10+off_x,20);
+}else if(paused){
+	draw_sprite(UI_Control_Icon,control_mode,10,20);
+}
 
 // cursor offset
 var curs_off_x = (8-(4*curs_y)+curs_offset_x);

@@ -23,19 +23,23 @@ if(wind_spd > 0){
 	draw_set_color(c_white);
 }
 
-// riptide boost FX
-/*if(boost_active){
-	if(!surface_exists(boost_surface)){
-		boost_surface = surface_create(surface_get_width(application_surface),surface_get_height(application_surface));
+// rain overlay
+var alph = 0.0;
+if(weather_timers[2] >= 0){
+	if(precip){
+		alph = ((weather_timers[2]/240)*0.5);
+	}else{
+		alph = ((1-weather_timers[2]/240)*0.5);
 	}
-	surface_copy(boost_surface,0,0,application_surface);
-	shader_set(Riptide);
-	draw_surface_ext(boost_surface,camera_get_view_x(view_camera[0]),camera_get_view_y(view_camera[0]),0.25,0.25,0,c_white,1.0);
-	shader_reset();
-	
-	// draw player on top of boost FX
-	if(instance_exists(Player) && surface_exists(Player.beyond)){
-		// draw surface
-		draw_surface(Player.beyond,camera_get_view_x(view_camera[0]),camera_get_view_y(view_camera[0]));
+}else if(precip){
+	alph = 0.5;
+}
+if(alph > 0.0){
+	draw_set_alpha(alph);
+	if(rain_light > 0){
+		draw_sprite_tiled(Weather_RainLight,rain_img,0,rain_off);
+	}else{
+		draw_sprite_tiled(Weather_Rain,rain_img,0,rain_off);
 	}
-}*/
+	draw_set_alpha(1.0);
+}

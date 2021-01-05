@@ -5,7 +5,9 @@ var x_spd = 0;
 var y_spd = 0;
 
 // hit flash
-hit_flash = lerp(hit_flash,0,1);
+if(hit_flash > 0){
+	hit_flash -= 1;
+}
 
 if(!boost_active){
 // movement controls
@@ -35,10 +37,7 @@ if(HP > 0){
 					}
 					if((x == AI_targ_x && y == AI_targ_y)){
 						AI_state = 1;
-						AI_wait = 8; //30
-						//if(target != noone){
-						//show_debug_message("Done moving, at ("+string(x)+","+string(y)+"), radius="+string(distance_to_point(target.x,target.y)));
-						//}
+						AI_wait = 8;
 					}
 				break;
 				case 1:
@@ -52,10 +51,9 @@ if(HP > 0){
 					}
 					
 					if(target != noone){
-						//var dist = distance_to_object(target);
 						var dist = distance_to_point(target.x,target.y);
 						// found, move to offensive standby
-						if(dist < 32){ // 20
+						if(dist < 32){
 							// player in melee range
 							if(slash == noone){
 								if(AI_intention == 1){
@@ -84,7 +82,6 @@ if(HP > 0){
 								var chance = irandom_range(0,1);
 								if(chance == 1){
 									AI_intention = 1;
-									//show_debug_message(string(id)+" got angry, dist="+string(dist));
 								}else{
 									AI_wait = 8;
 								}

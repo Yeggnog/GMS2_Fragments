@@ -67,6 +67,7 @@ if(deactivate == 0){
 			}else if(inst.object_index == ProjectileAttack){
 				// projectile
 				inst.dir = dir;
+				inst.owner = owner;
 				// deflect particle
 				part_particles_create(part_sys,inst.x,inst.y,part_types[| 3],1);
 			}

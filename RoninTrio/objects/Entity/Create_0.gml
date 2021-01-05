@@ -8,3 +8,5 @@ HP = 10;
 
 // other
 hit_flash = 0;
+xscale = 1;
+yscale = 1;

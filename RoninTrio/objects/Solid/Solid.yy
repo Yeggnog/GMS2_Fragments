@@ -4,7 +4,7 @@
     "path": "sprites/Collider_16/Collider_16.yy",
   },
   "solid": false,
-  "visible": true,
+  "visible": false,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": null,
