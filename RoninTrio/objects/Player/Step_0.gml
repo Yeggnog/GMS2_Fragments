@@ -178,16 +178,19 @@ if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0 && cinematic_finish == f
 		GameControl.boost_ring_x = x;
 		GameControl.boost_ring_y = y;
 	}
+	/*
 	if(inputs[11,0] > 0){
-		// projectile
+		// projectile [DEBUG]
 		var shot = instance_create_layer(x+lengthdir_x(18,angle),y+lengthdir_y(18,angle),layer,ProjectileAttack);
 		shot.dmg = 3;
 		shot.force = 0.75;
 		shot.dir = angle;
 		shot.spd = 4;
 		shot.life = 5;
+		shot.sprite_index = Crossbow_Bolt;
 		anim_wait = 4;
 	}
+	*/
 	if(inputs[8,0] > 0 && slash == noone){
 		// slash
 		slash = instance_create_layer(x+lengthdir_x(18,angle),y+lengthdir_y(18,angle),layer,MeleeAttack);
@@ -207,6 +210,14 @@ if(int64(x_knock) == 0 && int64(y_knock) == 0 && HP > 0 && cinematic_finish == f
 		}
 		slash.sprite_index = Particles_Slash1;
 		anim_wait = 7; //4
+	}
+}
+if(HP <= 0){
+	switch(facing){
+		case 0: if(sprite_index != Player_die_R){ sprite_index = Player_die_R; } break;
+		case 1: if(sprite_index != Player_die_L){ sprite_index = Player_die_L; } break;
+		case 2: if(sprite_index != Player_die_R){ sprite_index = Player_die_R; } break;
+		case 3: if(sprite_index != Player_die_L){ sprite_index = Player_die_L; } break;
 	}
 }
 
@@ -262,13 +273,9 @@ x += x_spd;
 y += y_spd;
 
 // handle overflow
-x = max(0,x);
-x = min(x,room_width);
-y = max(0,y);
-y = min(y,room_height);
-
-// -- sprite updates --
-
-
+x = max(8,x);
+x = min(x,room_width-8);
+y = max(8,y);
+y = min(y,room_height-8);
 
 }

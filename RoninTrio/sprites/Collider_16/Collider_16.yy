@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"2b1bb95d-88e9-4981-87f0-a47dea7f0c17","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "UI_Control",
+    "path": "folders/Sprites/UI_Control.yy",
   },
   "resourceVersion": "1.0",
   "name": "Collider_16",

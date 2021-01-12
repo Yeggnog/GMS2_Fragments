@@ -20,11 +20,27 @@ if(HP > 0){
 				case 0:
 					// moving / adjusting position
 					if(place_meeting(AI_targ_x,AI_targ_y,Solid)){
+						// target position is in a wall
 						var ret_dir = point_direction(AI_targ_x,AI_targ_y,x,y);
-						//show_debug_message("Target position in a wall, moving to ("+string(AI_targ_x+lengthdir_x(2,ret_dir))+","+string(AI_targ_y+lengthdir_y(2,ret_dir))+")");
 						AI_targ_x += lengthdir_x(2,ret_dir);
 						AI_targ_y += lengthdir_y(2,ret_dir);
 					}
+					// re-examine move destination
+					//var dist1 = distance_to_point(AI_targ_x,AI_targ_y);
+					var dist2 = distance_to_point(Player.x,Player.y);
+					if(dist2 < 40){ //32
+						/*var mov_dir = point_direction(x,y,AI_targ_x,AI_targ_y);
+						var collision = false;
+						for(var i=1; i<4; i++){
+							var chk_x = x+lengthdir_x(i*(dist1/4),mov_dir);
+							var chk_y = y+lengthdir_y(i*(dist1/4),mov_dir);
+							collision = (collision || place_meeting(chk_x,chk_y,Solid));
+						}*/
+						var ret_dir = point_direction(Player.x,Player.y,x,y);
+						AI_targ_x = Player.x+round(lengthdir_x(20,ret_dir));
+						AI_targ_y = Player.y+round(lengthdir_y(20,ret_dir));
+					}
+					// move
 					if(x < AI_targ_x){
 						x_spd += min(1,AI_targ_x-x);
 					}else if(x > AI_targ_x){
@@ -35,6 +51,7 @@ if(HP > 0){
 					}else if(y > AI_targ_y){
 						y_spd -= min(1,y-AI_targ_y);
 					}
+					// stop if we've arrived
 					if((x == AI_targ_x && y == AI_targ_y)){
 						AI_state = 1;
 						AI_wait = 8;
@@ -204,9 +221,9 @@ y += y_spd;
 }
 
 // handle overflow
-x = max(0,x);
-x = min(x,room_width);
-y = max(0,y);
-y = min(y,room_height);
+x = max(8,x);
+x = min(x,room_width-8);
+y = max(8,y);
+y = min(y,room_height-8);
 
 }

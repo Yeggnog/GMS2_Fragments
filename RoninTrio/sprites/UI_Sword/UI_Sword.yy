@@ -72,8 +72,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"032673d2-9d80-42e3-a18c-52c8c0b05aae","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "UI_Control",
+    "path": "folders/Sprites/UI_Control.yy",
   },
   "resourceVersion": "1.0",
   "name": "UI_Sword",

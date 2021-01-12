@@ -72,8 +72,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"0ca8ffa8-56ea-48e3-a908-b62d85b94588","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "UI_Control",
+    "path": "folders/Sprites/UI_Control.yy",
   },
   "resourceVersion": "1.0",
   "name": "Circle_Normal",

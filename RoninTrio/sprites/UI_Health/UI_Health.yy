@@ -76,8 +76,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"9ac29039-d5e6-475d-9a0c-1e1ee1e069f4","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "UI_Control",
+    "path": "folders/Sprites/UI_Control.yy",
   },
   "resourceVersion": "1.0",
   "name": "UI_Health",

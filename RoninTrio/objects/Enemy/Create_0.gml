@@ -18,6 +18,7 @@ AI_wait = 0;
 AI_intention = 0;
 AI_targ_x = x;
 AI_targ_y = y;
+AI_targ_rad = -1;
 origin_x = x;
 origin_y = y;
 target = noone;

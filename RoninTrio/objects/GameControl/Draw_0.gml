@@ -13,6 +13,7 @@
 
 // draw weather effects
 
+/*
 // wind [DEBUG]
 if(wind_spd > 0){
 	draw_set_color(c_red);
@@ -22,7 +23,9 @@ if(wind_spd > 0){
 		center_y+lengthdir_y(wind_spd,wind_dir),2);
 	draw_set_color(c_white);
 }
+*/
 
+if(menu_index != 0 && menu_index != 1 && menu_index != 2){
 // rain overlay
 var alph = 0.0;
 if(weather_timers[2] >= 0){
@@ -42,4 +45,5 @@ if(alph > 0.0){
 		draw_sprite_tiled(Weather_Rain,rain_img,0,rain_off);
 	}
 	draw_set_alpha(1.0);
+}
 }

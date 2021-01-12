@@ -13,7 +13,7 @@ surface_reset_target();
 // reflective part of other objects
 surface_set_target(alpha_surf);
 var ent_list = ds_list_create();
-var atk_list = ds_list_create();
+//var atk_list = ds_list_create();
 instance_place_list(x,y,Entity,ent_list,true);
 var n = ds_list_size(ent_list);
 for(var i=0; i<n; i++){
@@ -42,9 +42,9 @@ texture_set_stage(samp,surf_tex);
 //shader_set_uniform_f(time,(current_time/room_speed));
 shader_set_uniform_f(time,sec*off);
 if(GameControl.snow_lvl == 1){
-	shader_set_uniform_f(mag,0.005*(GameControl.weather_timers[1]/240),0.007*(GameControl.weather_timers[1]/240));
+	shader_set_uniform_f(mag,0.002*(GameControl.weather_timers[1]/240),0.002*(GameControl.weather_timers[1]/240));
 }else if(GameControl.snow_lvl == 0){
-	shader_set_uniform_f(mag,0.005,0.007);
+	shader_set_uniform_f(mag,0.002,0.002); //0.005
 }
 shader_set_uniform_f(pixelW,texture_get_texel_width(surf_tex));
 shader_set_uniform_f(pixelH,texture_get_texel_height(surf_tex));

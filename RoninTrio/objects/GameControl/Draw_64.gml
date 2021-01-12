@@ -45,7 +45,6 @@ if(boost_active){
 	draw_surface(boost_surface,1,2);
 	shader_reset();
 	
-	//draw_surface(boost_nmap,0,0);
 	surface_free(boost_nmap);
 	
 	// draw player on top of boost FX
@@ -64,75 +63,182 @@ surface_set_target(UI_surf);
 
 // [ everything in here is properly scaled ]
 
-// boost meter
+if(instance_exists(Player)){
+	// boost meter
+	draw_sprite(UI_Health,0,2,2);
+	draw_sprite_part(UI_Health,1,7,3,(24*(Player.HP/10)),4,9,5);
+	draw_sprite_part(UI_Health,2,7,5,(21*(Player.boost/Player.boost_max)),2,9,7);
+}
 /*draw_sprite(UI_Boost,0,2,2);
 draw_rectangle(17,5,67,13,false);
 draw_set_color(c_black);
 draw_rectangle(18,6,66,12,false);
 draw_set_color(make_color_rgb(0,191,243));
 draw_rectangle(18,6,18+((Player.boost/Player.boost_max)*48),12,false);*/
-draw_sprite(UI_Health,0,2,2);
-draw_sprite_part(UI_Health,1,7,3,(24*(Player.HP/10)),4,9,5);
-draw_sprite_part(UI_Health,2,7,5,(21*(Player.boost/Player.boost_max)),2,9,7);
 
 draw_set_color(c_white);
 
 // draw menu
 
-// control mode indicator
-var off_x = 0;
-if(pause_wait != -1){
-	if(paused){
-		off_x = (-20*(2-(pause_wait/6)));
+if(menu_index == 0 || menu_index == 2 || menu_index == 3 || menu_index == 5){
+	// cursor offset
+	if(menu_index == 2 || menu_index == 5){
+		var curs_off_x = (8-(4*(2*curs_y+1))+curs_offset_x);
+		var curs_off_y = (-40+(20*(2*curs_y+1))+curs_offset_y);
 	}else{
-		off_x = (-20*(pause_wait/6));
+		var curs_off_x = (8-(4*curs_y)+curs_offset_x);
+		var curs_off_y = (-40+(20*curs_y)+curs_offset_y);
 	}
-	draw_sprite(UI_Control_Icon,control_mode,10+off_x,20);
-}else if(paused){
-	draw_sprite(UI_Control_Icon,control_mode,10,20);
-}
-
-// cursor offset
-var curs_off_x = (8-(4*curs_y)+curs_offset_x);
-var curs_off_y = (-40+(20*curs_y)+curs_offset_y);
 	
-// sword / menu cursor
-if(pause_wait != -1){
-	var offset_x = 0;
-	var offset_y = 0;
-	var offset_a = point_direction(0, 0, 6, 1);
-	if(paused){
-		// ease out (0->max)
-		offset_x = lengthdir_x(2-(pause_wait/6), offset_a);
-		offset_y = lengthdir_y(2-(pause_wait/6), offset_a);
-	}else{
-		// ease in (max->0)
-		offset_x = lengthdir_x((pause_wait/6), offset_a);
-		offset_y = lengthdir_y((pause_wait/6), offset_a);
+	// sword / menu cursor
+	if(pause_wait != -1){
+		var offset_x = 0;
+		var offset_y = 0;
+		var offset_a = point_direction(0, 0, 6, 1);
+		if(paused){
+			// ease out (0->max)
+			offset_x = lengthdir_x(2-(pause_wait/6), offset_a);
+			offset_y = lengthdir_y(2-(pause_wait/6), offset_a);
+		}else{
+			// ease in (max->0)
+			offset_x = lengthdir_x((pause_wait/6), offset_a);
+			offset_y = lengthdir_y((pause_wait/6), offset_a);
+		}
+		draw_sprite(UI_Sword, 0, 71+(71*offset_x)+curs_off_x, 93-(68*offset_y)+curs_off_y);
+		draw_sprite(UI_Sword, 1, 71-(71*offset_x)+curs_off_x, 93+(68*offset_y)+curs_off_y);
+	}else if(paused){
+		draw_sprite(UI_Sword, 0, 71+curs_off_x, 93+curs_off_y);//96
+		draw_sprite(UI_Sword, 1, 71+curs_off_x, 93+curs_off_y);
 	}
-	draw_sprite(UI_Sword, 0, 71+(71*offset_x)+curs_off_x, 93-(68*offset_y)+curs_off_y);
-	draw_sprite(UI_Sword, 1, 71-(71*offset_x)+curs_off_x, 93+(68*offset_y)+curs_off_y);
-}else if(paused){
-	draw_sprite(UI_Sword, 0, 71+curs_off_x, 93+curs_off_y);//96
-	draw_sprite(UI_Sword, 1, 71+curs_off_x, 93+curs_off_y);
 }
 
-// menu text
-draw_set_alpha(0.0);
-if(pause_wait > -1){
-	if(!paused){
-		draw_set_alpha((1.0-(pause_wait/12)));
-	}else{
-		draw_set_alpha((pause_wait/12));
+if(menu_index == 0){
+	// title menu
+	draw_sprite(UI_Title,0,-1,2);
+	// menu text
+	for(var i=0; i<3; i++){
+		draw_sprite(UI_TitleMenu_text,i,71+8-(4*i),99-40+(20*i));//96
 	}
-}else if(paused){
+}else if(menu_index == 1){
+	// save data menu
+	// save font
+	var fnt_save1 = font_add_sprite(UI_Text_noOutline,ord("A"),true,1);
+	var fnt_save2 = font_add_sprite(UI_Text_small,ord("0"),true,1);
+	for(var i=0; i<3; i++){
+		// slot bases
+		if(i == curs_y){
+			draw_sprite(UI_SaveData,0,3,16+55*i);
+		}else{
+			draw_sprite(UI_SaveData,1,3,16+55*i);
+		}
+		if(saves[i,0]){
+			// slot data
+			draw_set_font(fnt_save1);
+			draw_text(8,20+55*i,saves[i,1]);
+			draw_set_font(fnt_save2);
+			// area name
+			var area = saves[i,2];
+			var str = "???";
+			switch(area){
+				case Stage_0: str = "MARSH"; break;
+			}
+			draw_text(12,36+55*i,str);
+			draw_text(12,45+55*i,string(saves[i,3]));
+			// beast "orbs"
+			// pegasus
+			if(saves[i,4] == 1){
+				if(i == curs_y){ draw_sprite(UI_SaveIcons,0,124,52+55*i); }
+				else{ draw_sprite(UI_SaveIcons,4,124,52+55*i); }
+			}else if(saves[i,4] == 2){
+				if(i == curs_y){ draw_sprite(UI_SaveIcons,3,124,52+55*i); }
+				else{ draw_sprite(UI_SaveIcons,7,124,52+55*i); }
+			}
+			// dragon
+			if(saves[i,5] == 1){
+				if(i == curs_y){ draw_sprite(UI_SaveIcons,1,118,39+55*i); }
+				else{ draw_sprite(UI_SaveIcons,5,118,39+55*i); }
+			}else if(saves[i,5] == 2){
+				if(i == curs_y){ draw_sprite(UI_SaveIcons,3,118,39+55*i); }
+				else{ draw_sprite(UI_SaveIcons,7,118,39+55*i); }
+			}
+			// phoenix
+			if(saves[i,6] == 1){
+				if(i == curs_y){ draw_sprite(UI_SaveIcons,2,130,39+55*i); }
+				else{ draw_sprite(UI_SaveIcons,6,130,39+55*i); }
+			}else if(saves[i,6] == 2){
+				if(i == curs_y){ draw_sprite(UI_SaveIcons,3,130,39+55*i); }
+				else{ draw_sprite(UI_SaveIcons,7,130,39+55*i); }
+			}
+		}else{
+			draw_set_font(fnt_save1);
+			draw_text(8,20+55*i,"NONE");
+		}
+	}
+	font_delete(fnt_save1);
+	font_delete(fnt_save2);
+}else if(menu_index == 2 || menu_index == 5){
+	// options
+	// menu text
+	for(var i=0; i<4; i++){
+		if(i == 1){
+			draw_sprite(UI_option_text,3+control_mode,71+8-(4*i),99-40+(20*i));
+		}else if(i == 0){
+			draw_sprite(UI_option_text,0,71+8-(4*i),99-40+(20*i));//96
+		}else if(i == 3){
+			draw_sprite(UI_option_text,i-1,71+8-(4*i),99-40+(20*i));//96
+			// sensitivity things
+			for(var j=0; j<axis_sens; j++){
+				draw_sprite(UI_option_text,5,71+8-(4*i)-54+(11*j),99-40+(20*i)+3-(2*j));
+			}
+		}else{
+			draw_sprite(UI_option_text,i-1,71+8-(4*i),99-40+(20*i));//96
+		}
+	}
+}else if(menu_index == 3){
+	// pause menu
+	// menu text
+	draw_set_alpha(0.0);
+	if(pause_wait > -1){
+		if(!paused){
+			draw_set_alpha((1.0-(pause_wait/12)));
+		}else{
+			draw_set_alpha((pause_wait/12));
+		}
+	}else if(paused){
+		draw_set_alpha(1.0);
+	}
+	for(var i=0; i<5; i++){
+		draw_sprite(UI_pause_text,i,71+8-(4*i),99-40+(20*i));//96
+	}
 	draw_set_alpha(1.0);
+}else if(menu_index == 4){
+	// items menu
+	draw_sprite(UI_ItemBG,0,0,0);
+	// draw item sprites
+	draw_sprite(UI_ItemCursor,0,10+(curs_x*18)+curs_offset_x,16+(curs_y*18)+curs_offset_y);
+}else if(menu_index == 6){
+	// quit Y/N
+	// cursor
+	draw_sprite(UI_pause_text,7,69-14+(38*curs_x)+curs_offset_x,109+3-(8*curs_x)+curs_offset_y);
+	// text
+	draw_sprite(UI_pause_text,5,71+2,99-10);
+	draw_sprite(UI_pause_text,6,71-2,99+10);
 }
-for(var i=0; i<5; i++){
-	//draw_sprite(UI_pause_text,i,72+8-(4*i),100-40+(20*i));
-	draw_sprite(UI_pause_text,i,71+8-(4*i),99-40+(20*i));//96
+
+if(menu_index == 2 || menu_index == 3 || menu_index == 5){
+	// control mode indicator
+	var off_x = 0;
+	if(pause_wait != -1){
+		if(paused){
+			off_x = (-20*(2-(pause_wait/6)));
+		}else{
+			off_x = (-20*(pause_wait/6));
+		}
+		draw_sprite(UI_Control_Icon,control_mode,10+off_x,20);
+	}else if(paused){
+		draw_sprite(UI_Control_Icon,control_mode,10,20);
+	}
 }
-draw_set_alpha(1.0);
 
 // [ end of proper scaling ]
 

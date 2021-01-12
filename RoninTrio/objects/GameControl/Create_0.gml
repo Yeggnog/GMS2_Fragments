@@ -8,6 +8,7 @@ randomize();
 // ( 0 -> constant check, 1 -> press check )
 // ( 0 -> not a stick input, 1 -> stick pos., 2 -> stick neg. )
 control_mode = 0;
+axis_sens = 5;
 
 globalvar inputs;
 inputs[0,0] = 0; inputs[0,1] = ord("A"); inputs[0,2] = 0; inputs[0,3] = 0; inputs[0,4] = 0; // left
@@ -25,6 +26,8 @@ inputs[9,0] = 0; inputs[9,1] = ord("E"); inputs[9,2] = 0; inputs[9,3] = 1; input
 inputs[10,0] = 0; inputs[10,1] = vk_escape; inputs[10,2] = 0; inputs[10,3] = 1; inputs[10,4] = 0; // pause
 inputs[11,0] = 0; inputs[11,1] = mb_right; inputs[11,2] = 1; inputs[11,3] = 1; inputs[11,4] = 0; // projectile[DEBUG] / cancel
 inputs[12,0] = 0; inputs[12,1] = mb_none; inputs[12,2] = 1; inputs[12,3] = 0; inputs[12,4] = 0; // look angle input
+inputs[13,1] = mb_left; inputs[13,2] = 1; inputs[13,3] = 1; inputs[13,4] = 0; // confirm
+inputs[14,1] = mb_right; inputs[14,2] = 1; inputs[14,3] = 1; inputs[14,4] = 0; // cancel
 
 // control inputs (GAMEPAD DEFAULT)
 
@@ -92,12 +95,25 @@ obj_list = ds_list_create();
 
 // pausing / menus
 globalvar paused;
-paused = false;
+paused = true; //false
 pause_wait = -1;
 curs_wait = 0;
 curs_y = 0;
+curs_x = 0;
 curs_offset_x = 0;
 curs_offset_y = 0;
+menu_index = 0;
+/*
+-1: None
+0: Title Menu
+1: Title | Save Data
+2: Title | Options
+3: Pause Menu
+4: Pause | Items
+5: Pause | Options
+6: Pause | Quit Y/N
+*/
+menu_delay = 0;
 
 // riptide boost FX
 globalvar boost_active;
@@ -112,7 +128,7 @@ boost_nmap = surface_create(surface_get_width(application_surface),surface_get_h
 // weather FX
 weather_timers[0] = 0;
 weather_timers[1] = -1;
-weather_timers[2] = -1;
+weather_timers[2] = 240; //-1
 wind_spd = 0;
 wind_dir = 0;
 snow_lvl = 0;
@@ -121,3 +137,38 @@ rain_img_timer = 3;
 rain_light = 0;
 rain_off = 0;
 precip = false;
+
+// save data
+saves[0,0] = false;			// save validity
+saves[0,1] = "Missingno.";	// save name
+saves[0,2] = 0;				// area index
+saves[0,3] = 0;				// completion percentage?
+saves[0,4] = 0;				// beast 1 status (pegasus)
+saves[0,5] = 0;				// beast 2 status (dragon)
+saves[0,6] = 0;				// beast 3 status (phoenix)
+
+/*
+saves[0,0] = true;			// save validity
+saves[0,1] = "RONIN";		// save name
+saves[0,2] = Stage_0;		// area index
+saves[0,3] = 42;			// completion percentage?
+saves[0,4] = 1;				// beast 1 status (pegasus)
+saves[0,5] = 1;				// beast 2 status (dragon)
+saves[0,6] = 1;				// beast 3 status (phoenix)
+*/
+
+saves[1,0] = false;			// save validity
+saves[1,1] = "Missingno.";	// save name
+saves[1,2] = 0;				// area index
+saves[1,3] = 0;				// completion percentage?
+saves[1,4] = 0;				// beast 1 status (pegasus)
+saves[1,5] = 0;				// beast 2 status (dragon)
+saves[1,6] = 0;				// beast 3 status (phoenix)
+
+saves[2,0] = false;			// save validity
+saves[2,1] = "Missingno.";	// save name
+saves[2,2] = 0;				// area index
+saves[2,3] = 0;				// completion percentage?
+saves[2,4] = 0;				// beast 1 status (pegasus)
+saves[2,5] = 0;				// beast 2 status (dragon)
+saves[2,6] = 0;				// beast 3 status (phoenix)

@@ -57,7 +57,7 @@ if(hit_flash > 0 || HP <= 0){
 	if(hit_flash > 0){
 		shader_set_uniform_f(col, 255.0, 255.0, 255.0, 1.0);
 	}else{
-		shader_set_uniform_f(col, 64.0, 64.0, 64.0, 1.0);
+		shader_set_uniform_f(col, 64.0, 64.0, 64.0, 0.5);
 	}
 }
 draw_sprite_ext(sprite_index,image_index,x,y,xscale,yscale,0,c_white,1.0);
