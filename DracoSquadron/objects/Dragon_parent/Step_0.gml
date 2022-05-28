@@ -2,6 +2,13 @@
 if(!game_paused){
 
 // control handling
+
+// screenshake test
+if(keyboard_check_pressed(ord("Q"))){
+	Camera_parent.shake_duration += 15;
+	show_debug_message("Pressed the thing");
+}
+
 var x_spd = 0;
 var y_spd = 0;
 if(flight_lead == self){
@@ -34,6 +41,8 @@ if(flight_lead == self){
 	}
 	
 	// swap formation
+	var stored_form = form_id;
+	
 	if(control_input("form1", "pressed") == 1){
 		form_id = 0;
 	}else if(control_input("form2", "pressed") == 1){
@@ -42,6 +51,13 @@ if(flight_lead == self){
 		form_id = 2;
 	}else if(control_input("form4", "pressed") == 1){
 		form_id = 3;
+	}
+	
+	// update
+	if(form_id != stored_form){
+		for(var i=1; i<4; i++){
+			Game_control.dragon_inst_ids[i].form_update = true;
+		}
 	}
 	
 }else if(flight_lead != noone){
@@ -79,9 +95,9 @@ if(flight_lead == self){
 		form_update = false;
 		trans_angle = point_direction(form_targ_x, form_targ_y, x, y);
 		trans_dist = sqrt(power((x-form_targ_x),2) + power((y-form_targ_y),2));
-		if(trans_prog == 0){ // change?
-			trans_prog = 10;
-		}
+		//if(trans_prog == 0){ // change?
+		trans_prog = 10;
+		//}
 	}
 	
 	// move to target
@@ -119,10 +135,16 @@ x += x_spd;
 y += y_spd;
 
 // clamp position
+/*
 x = max(x, 8);
 x = min(x, room_width-8);
 y = max(y, 8);
 y = min(y, room_height-8);
+*/
+x = max(x, Camera_parent.x-168);
+x = min(x, Camera_parent.x+200);
+y = max(y, Camera_parent.y-348);
+y = min(y, Camera_parent.y+348);
 
 // -- inherit from parent --
 

@@ -15,9 +15,11 @@ move_speed = 5;
 vert_speed_distort = 0.6;
 
 // combat
+dragon_id = 0; // dictates attributes and name
 fire_delay = 12;
 fire_timer = 0;
 shot_type = "Normal";
+// get attributes based on id
 
 // formations
 flight_lead = self;

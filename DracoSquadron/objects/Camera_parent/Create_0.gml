@@ -7,3 +7,4 @@ scroll_speed = 2;
 shake_duration = 0;
 shake_offset_x = 0;
 shake_offset_y = 0;
+follower = instance_create_layer(x, y, layer, Camera_follow);

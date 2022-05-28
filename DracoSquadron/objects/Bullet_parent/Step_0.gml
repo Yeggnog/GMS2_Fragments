@@ -31,6 +31,7 @@ x += lengthdir_x(move_speed, move_angle);
 y += lengthdir_y(move_speed, move_angle);
 
 // destroy if outside
-if(x > room_width+6 || x < -6 || y > room_height+6 || y < -6){
+//if(x > room_width+6 || x < -6 || y > room_height+6 || y < -6){
+if(x > Camera_parent.x+208 || x < Camera_parent.x-208 || y > Camera_parent.y+352 || y < Camera_parent.y-352){
 	instance_destroy();
 }

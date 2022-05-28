@@ -29,4 +29,5 @@ cursor_offset_x = 0;
 cursor_offset_y = 0;
 
 // UI vars
-dragon_ids = [noone, noone, noone, noone];
+dragon_inst_ids = [noone, noone, noone, noone];
+dragon_ids = [-1, -1, -1, -1];
