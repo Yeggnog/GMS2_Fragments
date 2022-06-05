@@ -97,6 +97,7 @@ if(game_paused && cursor_offset_x == 0 && cursor_offset_y == 0){
 						dragon_ids[i] = selected_id;
 					}
 				}else{
+					/*
 					// get spawn point
 					var spawn = noone;
 					for(var i=0; i<instance_number(Spawn_point); i++){
@@ -115,10 +116,11 @@ if(game_paused && cursor_offset_x == 0 && cursor_offset_y == 0){
 						if(i > 0){
 							dragon.flight_lead = dragon_inst_ids[0];
 						}
-					}
+					}*/
 					
 					// start level
 					menu_panel = 3;
+					room_goto_next();
 					game_paused = false;
 				}
 			break;
@@ -131,16 +133,9 @@ if(game_paused && cursor_offset_x == 0 && cursor_offset_y == 0){
 					break;
 					case 1:
 						// restart level
+						room_restart();
 						
-						// get spawn point
-						var spawn = noone;
-						for(var i=0; i<instance_number(Spawn_point); i++){
-							var pt = instance_find(Spawn_point, i);
-							if(pt.team == 1 || pt.spawn_type == "Player"){
-								spawn = pt;
-							}
-						}
-						
+						/*
 						// clean up dragons
 						for(var i=0; i<4; i++){
 							if(dragon_inst_ids[i] != noone){
@@ -150,21 +145,9 @@ if(game_paused && cursor_offset_x == 0 && cursor_offset_y == 0){
 								dragon_inst_ids[i] = noone;
 							}
 						}
-						
-						//room_restart();
-					
-						/*
-						// instantiate dragons
-						for(var i=0; i<4; i++){
-							var dragon = instance_create_layer(spawn.x, spawn.y, "Instances", Dragon_parent);
-							dragon.dragon_id = dragon_ids[i];
-							dragon.flight_pos = i;
-							dragon_inst_ids[i] = dragon;
-							if(i > 0){
-								dragon.flight_lead = dragon_inst_ids[0];
-							}
-						}
 						*/
+					
+						//show_debug_message("restarted room but still in code");
 						
 						game_paused = false;
 					break;
@@ -180,6 +163,8 @@ if(game_paused && cursor_offset_x == 0 && cursor_offset_y == 0){
 								dragon_inst_ids[i] = noone;
 							}
 						}
+						// go to title screen
+						room_goto(1);
 					break;
 				}
 				cursor_y = 0;

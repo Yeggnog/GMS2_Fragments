@@ -6,7 +6,6 @@ if(!game_paused){
 // screenshake test
 if(keyboard_check_pressed(ord("Q"))){
 	Camera_parent.shake_duration += 15;
-	show_debug_message("Pressed the thing");
 }
 
 var x_spd = 0;
@@ -72,21 +71,21 @@ if(flight_lead == self){
 		break;
 		case 1:
 			// line	
-			offsets = [-48, 48, 96];
-			form_targ_x = flight_lead.x + offsets[flight_pos-1];
+			offsets = [0, -48, 48, 96];
+			form_targ_x = flight_lead.x + offsets[flight_pos];
 			form_targ_y = flight_lead.y;
 		break;
 		case 2:
 			// square
-			offsets = [[0, 48], [48, 0], [48, 48]];
-			form_targ_x = flight_lead.x + offsets[flight_pos-1][0];
-			form_targ_y = flight_lead.y + offsets[flight_pos-1][1];
+			offsets = [[0, 0], [0, 48], [48, 0], [48, 48]]; // finish adding rotation
+			form_targ_x = flight_lead.x + offsets[flight_pos][0];
+			form_targ_y = flight_lead.y + offsets[flight_pos][1];
 		break;
 		case 3:
 			// diamond
-			offsets = [[-48, 48], [0, 96], [48, 48]];
-			form_targ_x = flight_lead.x + offsets[flight_pos-1][0];
-			form_targ_y = flight_lead.y + offsets[flight_pos-1][1];
+			offsets = [[0, 0], [-48, 48], [0, 96], [48, 48]];
+			form_targ_x = flight_lead.x + offsets[flight_pos][0];
+			form_targ_y = flight_lead.y + offsets[flight_pos][1];
 		break;
 	}
 	
@@ -141,10 +140,18 @@ x = min(x, room_width-8);
 y = max(y, 8);
 y = min(y, room_height-8);
 */
+var vw = camera_get_view_width(view_camera[0]);
+var vh = camera_get_view_height(view_camera[0]);
+/*
 x = max(x, Camera_parent.x-168);
 x = min(x, Camera_parent.x+200);
 y = max(y, Camera_parent.y-348);
 y = min(y, Camera_parent.y+348);
+*/
+x = max(x, Camera_parent.x-(vw/2)+16);
+x = min(x, Camera_parent.x+(vw/2)-16);
+y = max(y, Camera_parent.y-(vh/2)+16);
+y = min(y, Camera_parent.y+(vh/2)-16);
 
 // -- inherit from parent --
 
@@ -163,6 +170,10 @@ if(place_meeting(x, y, Bullet_parent)){
 				hp -= inst.dmg;
 				hp = max(hp, 0);
 				i_frames = 8; // default 8, increase for dragons
+			}
+			// destroy shots
+			with(inst){
+				instance_destroy();
 			}
 		}
 	}

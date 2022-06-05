@@ -2,6 +2,7 @@
 
 state = 0; // 0 -> moving, 1 -> camera locked
 scroll_speed = 2;
+base_position = [x,y];
 
 // screenshake
 shake_duration = 0;

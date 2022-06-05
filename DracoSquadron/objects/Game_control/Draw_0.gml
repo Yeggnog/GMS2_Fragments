@@ -1,10 +1,10 @@
 /// @description Draw menus / UI
 
 // drawing vars
-var vx = view_xport[0];
-var vy = view_yport[0];
-var vw = view_wport[0];
-var vh = view_hport[0];
+var vx = camera_get_view_x(view_camera[0]);
+var vy = camera_get_view_y(view_camera[0]);
+var vw = camera_get_view_width(view_camera[0]);
+var vh = camera_get_view_height(view_camera[0]);
 
 // UI
 

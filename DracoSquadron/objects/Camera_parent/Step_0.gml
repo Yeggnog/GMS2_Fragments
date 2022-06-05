@@ -5,6 +5,19 @@ if(state == 0 && !game_paused){
 	// scroll until we hit the end of the room
 	if(y > 384){
 		y -= scroll_speed;
+		var lead = noone;
+		for(var i=0; i<4; i++){
+			if(Game_control.dragon_inst_ids[i] != noone){
+				var dragon = Game_control.dragon_inst_ids[i];
+				dragon.y -= scroll_speed;
+				lead = dragon.flight_lead;
+			}
+		}
+		if(lead != noone){
+			for(var i=0; i<3; i++){
+				lead.trail_pos[i][1] -= scroll_speed;
+			}
+		}
 	}
 }
 
