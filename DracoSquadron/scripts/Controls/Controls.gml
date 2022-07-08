@@ -31,8 +31,10 @@ function control_input(action, test){
 		case "form2": action_index = 3; break;
 		case "form3": action_index = 4; break;
 		case "form4": action_index = 5; break;
-		case "pause": action_index = 6; break;
-		case "decline": action_index = 7; break;
+		case "rot_left": action_index = 6; break;
+		case "rot_right": action_index = 7; break;
+		case "pause": action_index = 8; break;
+		case "decline": action_index = 9; break;
 	}
 	
 	// run test

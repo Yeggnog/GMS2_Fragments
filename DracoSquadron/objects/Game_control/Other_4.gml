@@ -23,8 +23,12 @@ if(test1 && menu_panel == 3){
 		dragon.dragon_id = dragon_ids[i];
 		dragon.flight_pos = i;
 		dragon_inst_ids[i] = dragon;
-		if(i > 0){
-			dragon.flight_lead = dragon_inst_ids[0];
-		}
+		dragon.flight_lead = dragon_inst_ids[0];
+		
+		// apply stat mods
+		var stats = stats_from_id(dragon_ids[i]);
+		dragon.shot_type = stats[0];
+		
+		show_debug_message("flight lead for "+string(dragon)+" after update is "+string(dragon.flight_lead));
 	}
 }

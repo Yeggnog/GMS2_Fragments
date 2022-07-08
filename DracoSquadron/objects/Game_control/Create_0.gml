@@ -5,7 +5,7 @@ globalvar control_mode;
 control_mode = 0; // 0 -> keyboard, 1 -> controller
 // axis mode, fire, formations 1-4, pause, decline
 globalvar control_binds;
-control_binds = ["WASD", vk_space, ord("1"), ord("2"), ord("3"), ord("4"), ord("E"), vk_lshift];
+control_binds = ["WASD", vk_space, ord("1"), ord("2"), ord("3"), ord("4"), vk_left, vk_right, ord("E"), vk_lshift];
 // "Mouse", "LStick", "RStick", "WASD", "Arrows" are axis mode options
 // idea: fixed with WASD for swapping, mouse for move and click for fire, lshift/rclick for decline, E for pause
 

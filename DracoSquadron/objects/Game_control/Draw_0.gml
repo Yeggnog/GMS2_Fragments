@@ -7,6 +7,43 @@ var vw = camera_get_view_width(view_camera[0]);
 var vh = camera_get_view_height(view_camera[0]);
 
 // UI
+// sp meters
+var lead_found = false;
+for(var i=0; i<4; i++){
+	var offset = 0;
+	var extend = 0;
+	if(lead_found){
+		offset = 4;
+	}
+	if(dragon_inst_ids[i] != noone && dragon_inst_ids[i] == dragon_inst_ids[i].flight_lead){
+		lead_found = true;
+		extend = 4;
+	}
+	draw_set_alpha(0.5);
+	draw_rectangle_color(vx+10, vy+10+(12*i)+offset, vx+80+(3*extend), vy+18+(12*i)+offset+extend, c_grey, c_grey, c_grey, c_grey, false);
+	draw_set_alpha(1.0);
+	if(dragon_inst_ids[i] != noone && dragon_inst_ids[i].sp_meter > 0){
+		draw_rectangle_color(vx+10, vy+10+(12*i)+offset, vx+((80+(3*extend))*(dragon_inst_ids[i].sp_meter / 20)), vy+18+(12*i)+offset+extend, c_aqua, c_aqua, c_lime, c_lime, false);
+	}
+}
+
+// debug
+/*
+if(dragon_inst_ids[0] != noone && dragon_inst_ids[0].flight_lead != noone){
+	draw_circle_color(dragon_inst_ids[0].flight_lead.x, dragon_inst_ids[0].flight_lead.y, 9, c_lime, c_lime, false);
+	draw_circle_color(dragon_inst_ids[0].flight_lead.form_targ_x, dragon_inst_ids[0].flight_lead.form_targ_y, 7, c_red, c_red, false);
+}
+for(var i=0; i<4; i++){
+	if(dragon_inst_ids[i] != noone){
+		var drg = dragon_inst_ids[i];
+		if(drg != drg.flight_lead){
+			draw_circle_color(drg.form_targ_x, drg.form_targ_y, 5,c_blue, c_blue, false);
+		}
+		draw_line_color(drg.form_targ_x, drg.form_targ_y, drg.form_targ_x+lengthdir_x(drg.trans_dist, drg.trans_angle), drg.form_targ_y+lengthdir_y(drg.trans_dist, drg.trans_angle), c_yellow, c_orange);
+		//draw_line_color(drg.x, drg.y, drg.form_targ_x, drg.form_targ_y, c_aqua, c_green);
+	}
+}
+*/
 
 // Menus
 
