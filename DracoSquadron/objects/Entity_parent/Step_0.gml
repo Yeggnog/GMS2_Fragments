@@ -15,6 +15,10 @@ if(place_meeting(x, y, Bullet_parent)){
 				hp -= inst.dmg;
 				hp = max(hp, 0);
 				i_frames = 8; // default 8, increase for dragons
+				with(inst){
+					// put particle here
+					instance_destroy();
+				}
 			}
 		}
 	}

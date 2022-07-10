@@ -14,7 +14,7 @@ team = 1;
 show_debug_message("Created at position ("+string(x)+", "+string(y)+") on layer "+string(layer));
 
 // movement
-move_speed = 5;
+move_speed = 7; //5
 vert_speed_distort = 0.6;
 
 // combat

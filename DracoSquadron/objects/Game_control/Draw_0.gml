@@ -23,7 +23,7 @@ for(var i=0; i<4; i++){
 	draw_rectangle_color(vx+10, vy+10+(12*i)+offset, vx+80+(3*extend), vy+18+(12*i)+offset+extend, c_grey, c_grey, c_grey, c_grey, false);
 	draw_set_alpha(1.0);
 	if(dragon_inst_ids[i] != noone && dragon_inst_ids[i].sp_meter > 0){
-		draw_rectangle_color(vx+10, vy+10+(12*i)+offset, vx+((80+(3*extend))*(dragon_inst_ids[i].sp_meter / 20)), vy+18+(12*i)+offset+extend, c_aqua, c_aqua, c_lime, c_lime, false);
+		draw_rectangle_color(vx+10, vy+10+(12*i)+offset, vx+10+((80+(3*extend))*(dragon_inst_ids[i].sp_meter / 20)), vy+18+(12*i)+offset+extend, c_aqua, c_aqua, c_lime, c_lime, false);
 	}
 }
 

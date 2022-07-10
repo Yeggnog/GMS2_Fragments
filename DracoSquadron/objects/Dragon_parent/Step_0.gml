@@ -80,21 +80,10 @@ if(flight_lead == id){
 	
 	// rotate flight lead
 	if(control_input("rot_left", "pressed") == 1 && trans_prog == 0){
-		//
-		show_debug_message("rotated left");
-		
-		// rotate flight positions
-		// assign new flight lead
-		// start transition
-		
-		//show_debug_message("flight lead is "+string(flight_lead));
-		//game_set_speed(6, gamespeed_fps);
-		
 		var old_lead = id;
 		for(var i=0; i<4; i++){
 			if(Game_control.dragon_inst_ids[i].flight_pos == 1){
 				flight_lead = Game_control.dragon_inst_ids[i];
-				//show_debug_message("set flight_lead to ");
 			}
 		}
 		for(var i=0; i<4; i++){
@@ -118,43 +107,7 @@ if(flight_lead == id){
 		flight_lead.trans_angle = point_direction(old_lead.x, old_lead.y, flight_lead.x, flight_lead.y);
 		flight_lead.form_targ_x = old_lead.x;
 		flight_lead.form_targ_y = old_lead.y;
-		//show_debug_message("set trans_dist to "+string(trans_dist)+" and trans_dir to "+string(trans_angle));
-		//flight_lead.trans_prog = 10;
-		flight_lead.form_id = old_lead.form_id;
-		
-		/*
-		// set transition vars
-		switch(flight_lead.form_id){
-			case 0:
-				// snake
-				form_targ_x = flight_lead.trail_pos[flight_pos-1][0];
-				form_targ_y = flight_lead.trail_pos[flight_pos-1][1];
-			break;
-			case 1:
-				// line	
-				offsets = [0, -48, 48, 96];
-				form_targ_x = flight_lead.form_targ_x + offsets[flight_pos];
-				form_targ_y = flight_lead.form_targ_y;
-			break;
-			case 2:
-				// square
-				offsets = [[0, 0], [0, 48], [48, 0], [48, 48]]; // finish adding rotation
-				form_targ_x = flight_lead.form_targ_x + offsets[flight_pos][0];
-				form_targ_y = flight_lead.form_targ_y + offsets[flight_pos][1];
-			break;
-			case 3:
-				// diamond
-				offsets = [[0, 0], [-48, 48], [0, 96], [48, 48]];
-				form_targ_x = flight_lead.form_targ_x + offsets[flight_pos][0];
-				form_targ_y = flight_lead.form_targ_y + offsets[flight_pos][1];
-			break;
-		}
-		
-		trans_angle = point_direction(form_targ_x, form_targ_y, x, y);
-		trans_dist = sqrt(power((form_targ_x-x),2) + power((form_targ_y-y),2));
-		trans_prog = 10;
-		*/
-		
+		flight_lead.form_id = old_lead.form_id;		
 		
 	}else if(control_input("rot_right", "pressed") == 1 && trans_prog == 0){
 		//
@@ -192,9 +145,7 @@ if(flight_lead == id){
 	
 }else if(flight_lead != noone){
 	// move into formation
-	
-	//show_debug_message(string(id)+" is aux dragon and not flight lead");
-	
+
 	// get position from formation
 	switch(flight_lead.form_id){
 		case 0:
@@ -234,11 +185,8 @@ if(flight_lead == id){
 // move to target
 if(trans_prog > 0){
 	trans_prog -= 1;
-	//show_debug_message(string(id)+" has target pos ("+string(form_targ_x)+", "+string(form_targ_y)+")");
-	//x_spd = form_targ_x + (lengthdir_x(trans_dist, trans_angle) * (1 - (trans_prog/10)) ) - x;
 	x_spd = form_targ_x + (lengthdir_x(trans_dist, trans_angle) * (trans_prog/10) ) - x;
 	y_spd = form_targ_y + (lengthdir_y(trans_dist, trans_angle) * (trans_prog/10) ) - y;
-	//y_spd = (form_targ_y + lengthdir_y(trans_dist * (trans_prog/10), trans_angle)) - y;
 }else if(form_targ_x != x || form_targ_y != y){
 	// homing like usual
 	if(distance_to_point(form_targ_x, form_targ_y) > move_speed){
@@ -281,7 +229,6 @@ if(flight_lead.shot_type == "homing"){
 		}
 		// fire
 		for(var i=0; i<num_shots; i++){
-			//show_debug_message("firing barrage, shot "+string(i));
 			var bullet = instance_create_layer(x, y-16, layer, Bullet_parent);
 			bullet.dmg = 4;
 			bullet.team = team;
@@ -340,11 +287,11 @@ if(place_meeting(x, y, Bullet_parent)){
 			if(i_frames == 0 && inst.team != team){
 				hp -= inst.dmg;
 				hp = max(hp, 0);
-				i_frames = 8; // default 8, increase for dragons
-			}
-			// destroy shots
-			with(inst){
-				instance_destroy();
+				i_frames = 24; // default 8, increase for dragons
+				// destroy shots
+				with(inst){
+					instance_destroy();
+				}
 			}
 		}
 	}

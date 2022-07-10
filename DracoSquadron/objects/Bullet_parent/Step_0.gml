@@ -21,21 +21,7 @@ if(homing && instance_find(homing_targ, 0) != noone){
 			move_angle -= homing_turn;
 		}
 	}
-	/*
-	if(best_angle > move_angle){
-		if(best_angle - move_angle > angle_difference(best_angle, move_angle)){
-			move_angle -= homing_turn;
-		}else{
-			move_angle += homing_turn;
-		}
-	}else if(best_angle < move_angle){
-		if(move_angle - best_angle > angle_difference(move_angle, best_angle)){
-			move_angle += homing_turn;
-		}else{
-			move_angle -= homing_turn;
-		}
-	}
-	*/
+	
 	// corrections
 	if(move_angle > 360){
 		move_angle -= 360;
